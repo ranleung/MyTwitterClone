@@ -74,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				7059891C19E336AB00742C32 /* Tweet.swift */,
+				7059891A19E3353500742C32 /* tweet.json */,
 			);
 			name = "Model Layer";
 			sourceTree = "<group>";
@@ -113,7 +114,6 @@
 				70BC1FFA19E331730062BA6C /* Main.storyboard */,
 				70BC1FFD19E331730062BA6C /* Images.xcassets */,
 				70BC1FFF19E331730062BA6C /* LaunchScreen.xib */,
-				7059891A19E3353500742C32 /* tweet.json */,
 				70BC1FF519E331730062BA6C /* MyTwitterClone.xcdatamodeld */,
 				70BC1FF119E331730062BA6C /* Supporting Files */,
 			);

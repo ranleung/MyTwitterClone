@@ -26,11 +26,15 @@ class Tweet {
                 if let tweetDictionary = JSONDictionary as? NSDictionary {
                     var newTweet = Tweet(tweetInfo: tweetDictionary)
                     tweets.append(newTweet)
+                    println("TEST")
                 }
             }
             return tweets
         }
         return nil
     }
-    
 }
+
+
+
+
