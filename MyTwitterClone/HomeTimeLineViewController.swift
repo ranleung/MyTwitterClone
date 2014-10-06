@@ -10,16 +10,20 @@ import UIKit
 
 class HomeTimeLineViewController: UIViewController {
 
+    var tweets : [Tweet]?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        if let path = NSBundle.mainBundle().pathForResource("tweet", ofType: "json") {
+            var error : NSError?
+            let jsonData = NSData(contentsOfFile: path)
+            
+            self.tweets = Tweet.parseJSONDataIntoTweets(jsonData)
+        }
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     
 
 }
