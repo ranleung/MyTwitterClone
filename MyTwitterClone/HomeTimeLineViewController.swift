@@ -42,7 +42,6 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource {
         cell.textLabel?.text = tweet?.text
         // Step 3, return the cell
         return cell
-        
     }
     
 
