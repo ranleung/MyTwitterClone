@@ -30,7 +30,7 @@ class Tweet {
             }
             
             //Sorting with Closures
-            tweets.sort{$1.text > $0.text}
+            //tweets.sort{$1.text > $0.text}
             return tweets
         }
         return nil
