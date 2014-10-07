@@ -84,11 +84,15 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Step 1: dequeue the cell
-        let cell = tableView.dequeueReusableCellWithIdentifier("TWEET_CELL", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("TWEET_CELL", forIndexPath: indexPath) as TweetCell
         // Step 2 figure out which model object youre going to use to configure the cell
         // This is where we would grab a reference to the correct tweet and use it to configure the cell
         let tweet = self.tweets?[indexPath.row]
-        cell.textLabel?.text = tweet?.text
+        cell.textView.text = tweet?.text
+        //For Image
+        let urlData = NSURL.URLWithString(tweet!.urlImage)
+        let imageData = NSData(contentsOfURL: urlData)
+        cell.profilePic.image = UIImage(data: imageData)
         // Step 3, return the cell
         return cell
     }

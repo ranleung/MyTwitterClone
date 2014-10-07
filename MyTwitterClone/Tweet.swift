@@ -9,11 +9,15 @@
 import Foundation
 
 class Tweet {
-    var text : String
+    var text: String
+    var urlImage: String
     
     init(tweetInfo: NSDictionary) {
         self.text = tweetInfo["text"] as String
+        let userInfo = tweetInfo["user"] as NSDictionary
+        self.urlImage = userInfo["profile_image_url"] as String
     }
+    
     
     // Method
     class func parseJSONDataIntoTweets(rawJSONData: NSData) -> [Tweet]? {
