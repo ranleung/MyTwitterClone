@@ -10,11 +10,16 @@ import Foundation
 
 class Tweet {
     var text: String
+    var username: String
     var urlImage: String
+
     
     init(tweetInfo: NSDictionary) {
         self.text = tweetInfo["text"] as String
         let userInfo = tweetInfo["user"] as NSDictionary
+        //For username
+        self.username = userInfo["name"] as String
+        //For image
         self.urlImage = userInfo["profile_image_url"] as String
     }
     

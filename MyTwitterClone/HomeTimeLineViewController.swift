@@ -89,10 +89,16 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource {
         // This is where we would grab a reference to the correct tweet and use it to configure the cell
         let tweet = self.tweets?[indexPath.row]
         cell.textView.text = tweet?.text
+        
+        //For Username
+        cell.username.text = tweet?.username
+        
         //For Image
         let urlData = NSURL.URLWithString(tweet!.urlImage)
         let imageData = NSData(contentsOfURL: urlData)
-        cell.profilePic.image = UIImage(data: imageData)
+        cell.profilePic.image = UIImage(data: imageData, scale: UIScreen.mainScreen().scale)
+
+        
         // Step 3, return the cell
         return cell
     }

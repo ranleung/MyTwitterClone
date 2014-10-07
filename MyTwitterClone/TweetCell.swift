@@ -15,6 +15,8 @@ class TweetCell: UITableViewCell {
 
     @IBOutlet var textView: UITextView!
 
+    @IBOutlet var username: UITextView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
