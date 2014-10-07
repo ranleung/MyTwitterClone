@@ -28,6 +28,9 @@ class Tweet {
                     tweets.append(newTweet)
                 }
             }
+            
+            //Sorting with Closures
+            tweets.sort{$1.text > $0.text}
             return tweets
         }
         return nil
