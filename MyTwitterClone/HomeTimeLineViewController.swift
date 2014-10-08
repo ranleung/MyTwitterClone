@@ -17,60 +17,33 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     var tweets : [Tweet]?
     var twitterAccount : ACAccount?
+    //To connect with the network Controller which is now a singleton.
+    //Look into the AppDelagate
+    var networkController: NetworkController!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let accountStore = ACAccountStore()
-//        //Want account type of Twitter
-//        let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
-//        accountStore.requestAccessToAccountsWithType(accountType, options: nil) { (granted: Bool, error: NSError!) -> Void in
-//            //If granted, set the Account to the SLRequest
-//            if granted {
-//                let accounts = accountStore.accountsWithAccountType(accountType)
-//                self.twitterAccount = accounts.first as ACAccount?
-//                let url = NSURL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json")
-//                let twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: nil)
-//                twitterRequest.account = self.twitterAccount
-//                
-//                //Also becomes a background thread here
-//                twitterRequest.performRequestWithHandler({ (data, httpResponse, error) -> Void in
-//                    
-//                    switch httpResponse.statusCode {
-//                    case 200...299:
-//                        println("This is good!")
-//                        //Right here, we are on a background queue (thread).
-//                        //Never do network calls in the main queue.  Social framework takes care of this automatically.
-//                        self.tweets = Tweet.parseJSONDataIntoTweets(data)
-//                        println(self.tweets?.count)
-//                        //Need to return back to main thread through.  Now getting back on the main quene.
-//                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-//                            self.tableView.reloadData()
-//                        })
-//                        //Now we are back on the main queue, aka thread
-//                        
-//                        
-//                    case 400...499:
-//                        println("This is the clients fault")
-//                        println(httpResponse.description)
-//                    case 500...599:
-//                        println("This is the servers fault")
-//                    default:
-//                        println("Something bad happened")
-//                    }
-//                })
-//                
-//            }
-//        }
+        //From AppDelagate, using it now.
+        //Down casting so we now know its from AppDelagate 
+        //The AppDelagate is from the sharedAppliction()
+        let appDelagate = UIApplication.sharedApplication().delegate as AppDelegate
+        self.networkController = appDelagate.networkController
+        
+        //Important!
+        //Now need to call on the newtwork controller
+        self.networkController.fetchHomeTimeLine { (errorDescription, tweets) -> (Void) in
+            if errorDescription != nil {
+                //When something wrong happens, should alert that something went wrong.
+                println(errorDescription)
+            } else {
+                self.tweets = tweets
+                self.tableView.reloadData()
+            }
+        }
         
         
-        
-//        if let path = NSBundle.mainBundle().pathForResource("tweet", ofType: "json") {
-//            var error : NSError?
-//            let jsonData = NSData(contentsOfFile: path)
-//            
-//            self.tweets = Tweet.parseJSONDataIntoTweets(jsonData)
-//        }
         
     }
     
