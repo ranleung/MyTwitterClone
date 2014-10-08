@@ -66,14 +66,18 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource {
         cell.textView.text = tweet?.text
         
         //For Username
+        cell.screenName.text = "@\(tweet!.screenName)"
+        
+        //For Screename
         cell.username.text = tweet?.username
+        
         
         //For Image, Using func from NetworkController
         let imageData = self.networkController.fetchProfilePic(tweet!.urlImage)
         //let urlData = NSURL.URLWithString(tweet!.urlImage)
         //Now making the network call
         //let imageData = NSData(contentsOfURL: urlData)
-        cell.profilePic.image = UIImage(data: imageData, scale: UIScreen.mainScreen().scale)
+        cell.profilePic.image = UIImage(data: imageData)
         
         
         // Step 3, return the cell

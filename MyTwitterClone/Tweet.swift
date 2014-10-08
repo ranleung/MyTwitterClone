@@ -11,6 +11,7 @@ import Foundation
 class Tweet {
     var text: String
     var username: String
+    var screenName: String
     var urlImage: String
 
     
@@ -19,6 +20,8 @@ class Tweet {
         let userInfo = tweetInfo["user"] as NSDictionary
         //For username
         self.username = userInfo["name"] as String
+        //For screenname
+        self.screenName = userInfo["screen_name"] as String
         //For image
         self.urlImage = userInfo["profile_image_url"] as String
     }

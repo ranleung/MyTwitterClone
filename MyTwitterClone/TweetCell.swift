@@ -14,6 +14,8 @@ class TweetCell: UITableViewCell {
     @IBOutlet var profilePic: UIImageView!
     @IBOutlet var textView: UILabel!
     @IBOutlet var username: UILabel!
+    @IBOutlet var screenName: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -11,11 +11,26 @@ import UIKit
 class SingleTweetViewController: UIViewController {
     
     var tweet: Tweet!
-
+    var networkController: NetworkController!
+    
+    
+    @IBOutlet var textView: UILabel!
+    @IBOutlet var userName: UILabel!
+    @IBOutlet var screenName: UILabel!
+    @IBOutlet var profilePic: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        let appDelagate = UIApplication.sharedApplication().delegate as AppDelegate
+        self.networkController = appDelagate.networkController
+        
+        textView.text = self.tweet.text
+        userName.text = self.tweet.username
+        screenName.text = "@\(self.tweet.screenName)"
+        let imageData = self.networkController.fetchProfilePic(tweet!.urlImage)
+        profilePic.image = UIImage(data: imageData)
+        
     }
 
     override func didReceiveMemoryWarning() {
