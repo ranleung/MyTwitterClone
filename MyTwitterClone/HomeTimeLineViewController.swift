@@ -80,5 +80,15 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showTweet" {
+            let showTweet = segue.destinationViewController as SingleTweetViewController
+            let indexPath = self.tableView.indexPathForSelectedRow()!
+            let selectedTweet = self.tweets?[indexPath.row]
+            showTweet.tweet = selectedTweet
+        }
+    }
+    
 
 }

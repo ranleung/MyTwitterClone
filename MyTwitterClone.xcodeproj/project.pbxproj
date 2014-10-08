@@ -17,6 +17,7 @@
 		70BC200119E331730062BA6C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70BC1FFF19E331730062BA6C /* LaunchScreen.xib */; };
 		70BC200D19E331740062BA6C /* MyTwitterCloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BC200C19E331740062BA6C /* MyTwitterCloneTests.swift */; };
 		70DD0FB219E5CE6600B4EE63 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DD0FB119E5CE6600B4EE63 /* NetworkController.swift */; };
+		70DD0FB419E5E01B00B4EE63 /* SingleTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DD0FB319E5E01B00B4EE63 /* SingleTweetViewController.swift */; };
 		70E9DB7319E4891600DCD634 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E9DB7219E4891600DCD634 /* TweetCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		70BC200B19E331740062BA6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70BC200C19E331740062BA6C /* MyTwitterCloneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTwitterCloneTests.swift; sourceTree = "<group>"; };
 		70DD0FB119E5CE6600B4EE63 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		70DD0FB319E5E01B00B4EE63 /* SingleTweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTweetViewController.swift; sourceTree = "<group>"; };
 		70E9DB7219E4891600DCD634 /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +73,7 @@
 			children = (
 				7059891819E333D900742C32 /* HomeTimeLineViewController.swift */,
 				70DD0FB119E5CE6600B4EE63 /* NetworkController.swift */,
+				70DD0FB319E5E01B00B4EE63 /* SingleTweetViewController.swift */,
 			);
 			name = "Controller Layer";
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				70BC1FF419E331730062BA6C /* AppDelegate.swift in Sources */,
 				70BC1FF719E331730062BA6C /* MyTwitterClone.xcdatamodeld in Sources */,
 				70DD0FB219E5CE6600B4EE63 /* NetworkController.swift in Sources */,
+				70DD0FB419E5E01B00B4EE63 /* SingleTweetViewController.swift in Sources */,
 				70E9DB7319E4891600DCD634 /* TweetCell.swift in Sources */,
 				7059891919E333D900742C32 /* HomeTimeLineViewController.swift in Sources */,
 				7059891D19E336AB00742C32 /* Tweet.swift in Sources */,

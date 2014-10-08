@@ -72,9 +72,8 @@ class NetworkController {
         
     }
     
-    
+    //Making the network call to fetch profile picture
     func fetchProfilePic(urlImage: String)-> NSData {
-        //Making the network call to get profile picture
         let urlData = NSURL.URLWithString(urlImage)
         let imageData = NSData(contentsOfURL: urlData)
         return imageData
