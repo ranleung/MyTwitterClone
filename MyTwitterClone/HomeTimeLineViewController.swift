@@ -97,7 +97,7 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource {
         let urlData = NSURL.URLWithString(tweet!.urlImage)
         let imageData = NSData(contentsOfURL: urlData)
         cell.profilePic.image = UIImage(data: imageData, scale: UIScreen.mainScreen().scale)
-
+        
         
         // Step 3, return the cell
         return cell
