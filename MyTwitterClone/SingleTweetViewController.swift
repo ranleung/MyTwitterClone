@@ -18,6 +18,8 @@ class SingleTweetViewController: UIViewController {
     @IBOutlet var userName: UILabel!
     @IBOutlet var screenName: UILabel!
     @IBOutlet var profilePic: UIImageView!
+    @IBOutlet var retweet: UILabel!
+    @IBOutlet var favorited: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +27,24 @@ class SingleTweetViewController: UIViewController {
         let appDelagate = UIApplication.sharedApplication().delegate as AppDelegate
         self.networkController = appDelagate.networkController
         
+        self.networkController.fetchSingleTweet(tweet, completionHandler: { (errorDescription, tweet) -> (Void) in
+            if errorDescription != nil {
+                println(errorDescription)
+            } else {
+                self.tweet = tweet
+                self.favorited.text = "Favorites: \(self.tweet.favorited!.description)"
+            }
+        })
+        
+        
         textView.text = self.tweet.text
         userName.text = self.tweet.username
         screenName.text = "@\(self.tweet.screenName)"
-        let imageData = self.networkController.fetchProfilePic(tweet!.urlImage)
+        let imageData = self.networkController.fetchProfilePic(self.tweet.urlImage)
         profilePic.image = UIImage(data: imageData)
-        
+        var retweetInt = self.tweet.retweet
+        var retweetStr = String(retweetInt)
+        retweet.text = "Retweets: \(retweetStr)"
     }
 
     override func didReceiveMemoryWarning() {

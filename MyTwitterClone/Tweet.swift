@@ -13,6 +13,9 @@ class Tweet {
     var username: String
     var screenName: String
     var urlImage: String
+    var retweet: Int
+    var id: String
+    var favorited: Int?
 
     
     init(tweetInfo: NSDictionary) {
@@ -24,6 +27,11 @@ class Tweet {
         self.screenName = userInfo["screen_name"] as String
         //For image
         self.urlImage = userInfo["profile_image_url"] as String
+        //For retweet
+        self.retweet = tweetInfo["retweet_count"] as Int
+        //For id
+        self.id = tweetInfo["id_str"] as String
+        
     }
     
     
@@ -47,6 +55,20 @@ class Tweet {
         }
         return nil
     }
+    
+    
+    class func paraseJSONDataIntoSingleTweet(rawJSONData: NSData, tweet: Tweet) -> Tweet{
+        var error: NSError?
+        
+        if let tweetDictionary = NSJSONSerialization.JSONObjectWithData(rawJSONData, options: nil, error: &error) as? NSDictionary {
+            tweet.favorited = tweetDictionary["favorite_count"] as? Int
+        }
+        return tweet
+        
+    }
+    
+    
+    
 }
 
 

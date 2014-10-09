@@ -80,7 +80,38 @@ class NetworkController {
     }
     
     
-    
+    //Making a network to get favorite Tweets
+    func fetchSingleTweet ( tweet: Tweet, completionHandler: (errorDescription: String?, tweet: Tweet?)-> (Void)) {
+        
+        let url = NSURL(string: "https://api.twitter.com/1.1/statuses/show.json?id="+tweet.id)
+        let twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: nil)
+        twitterRequest.account = self.twitterAccount
+        
+        twitterRequest.performRequestWithHandler { (data, httpResponse, error) -> Void in
+            switch httpResponse.statusCode {
+            case 200...299:
+                println("This is good!")
+                let tweetInfo = Tweet.paraseJSONDataIntoSingleTweet(data, tweet: tweet)
+   
+                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                    completionHandler(errorDescription: nil, tweet: tweetInfo)
+                })
+                
+                
+            case 400...499:
+                println("This is the clients fault")
+                println(httpResponse.description)
+                completionHandler(errorDescription: "This is the clients fault", tweet: nil)
+            case 500...599:
+                println("This is the servers fault")
+                completionHandler(errorDescription: "This is the servers fault", tweet: nil)
+            default:
+                println("Something bad happened")
+            }
+        }
+        
+    }
+
     
     
     
