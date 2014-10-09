@@ -122,39 +122,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xlc-u6-Zjn">
-                                <rect key="frame" x="32" y="72" width="153" height="141"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xlc-u6-Zjn">
+                                <rect key="frame" x="26" y="72" width="153" height="141"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="153" id="7a1-bD-x9N"/>
                                     <constraint firstAttribute="height" constant="141" id="J41-4T-8S0"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="userName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G2Y-Ka-cSi">
-                                <rect key="frame" x="193" y="39" width="191" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="userName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G2Y-Ka-cSi">
+                                <rect key="frame" x="187" y="39" width="191" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Retweet" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wod-jh-nOc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Retweet" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wod-jh-nOc">
                                 <rect key="frame" x="53" y="322" width="95" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Favorite" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahR-Lp-Omo">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Favorite" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahR-Lp-Omo">
                                 <rect key="frame" x="233" y="322" width="92" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="userName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUn-YD-Kv4">
-                                <rect key="frame" x="193" y="92" width="66" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="userName" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUn-YD-Kv4">
+                                <rect key="frame" x="187" y="92" width="66" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="screenName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fh6-8A-m6v">
-                                <rect key="frame" x="193" y="117" width="191" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="screenName" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fh6-8A-m6v">
+                                <rect key="frame" x="187" y="117" width="191" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Gn3-nr-KgU"/>
                                     <constraint firstAttribute="width" constant="191" id="LTw-hW-ENO"/>
@@ -163,8 +163,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fyw-gj-f04">
-                                <rect key="frame" x="32" y="221" width="321" height="100"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fyw-gj-f04">
+                                <rect key="frame" x="26" y="221" width="548" height="54"/>
                                 <string key="text">This is where the Tweet Description GoesThis is where the Tweet Description GoesThis is where the Tweet Description GoesThis is where the Tweet Description Goes</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -175,12 +175,15 @@
                         <constraints>
                             <constraint firstItem="Xlc-u6-Zjn" firstAttribute="leading" secondItem="Fyw-gj-f04" secondAttribute="leading" id="0fD-AL-BXf"/>
                             <constraint firstItem="CUn-YD-Kv4" firstAttribute="leading" secondItem="Xlc-u6-Zjn" secondAttribute="trailing" constant="8" symbolic="YES" id="1bH-sV-stJ"/>
+                            <constraint firstItem="YUy-Pg-RpC" firstAttribute="top" secondItem="G2Y-Ka-cSi" secondAttribute="bottom" constant="4" id="22Q-od-GTY"/>
                             <constraint firstItem="CUn-YD-Kv4" firstAttribute="leading" secondItem="G2Y-Ka-cSi" secondAttribute="leading" id="4b5-Wu-7Az"/>
                             <constraint firstItem="Fyw-gj-f04" firstAttribute="leading" secondItem="gMQ-B7-A03" secondAttribute="leadingMargin" constant="10" id="85R-7m-NDY"/>
+                            <constraint firstItem="G2Y-Ka-cSi" firstAttribute="trailing" secondItem="fh6-8A-m6v" secondAttribute="trailing" id="G9y-M6-3pB"/>
                             <constraint firstItem="CUn-YD-Kv4" firstAttribute="top" secondItem="YUy-Pg-RpC" secondAttribute="bottom" constant="28" id="S0A-Tc-5oq"/>
                             <constraint firstItem="fh6-8A-m6v" firstAttribute="leading" secondItem="Xlc-u6-Zjn" secondAttribute="trailing" constant="8" symbolic="YES" id="VrD-qY-rje"/>
                             <constraint firstItem="Fyw-gj-f04" firstAttribute="top" secondItem="Xlc-u6-Zjn" secondAttribute="bottom" constant="8" id="XzW-vI-aQs"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Fyw-gj-f04" secondAttribute="trailing" constant="10" id="bGu-bn-nGp"/>
+                            <constraint firstItem="G2Y-Ka-cSi" firstAttribute="top" secondItem="gMQ-B7-A03" secondAttribute="topMargin" constant="39" id="fc8-WA-xoY"/>
                             <constraint firstItem="Xlc-u6-Zjn" firstAttribute="top" secondItem="YUy-Pg-RpC" secondAttribute="bottom" constant="8" symbolic="YES" id="qSe-aP-zso"/>
                             <constraint firstItem="fh6-8A-m6v" firstAttribute="top" secondItem="CUn-YD-Kv4" secondAttribute="bottom" constant="8" symbolic="YES" id="yMs-Ty-1H8"/>
                         </constraints>

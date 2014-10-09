@@ -24,6 +24,8 @@ class SingleTweetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         let appDelagate = UIApplication.sharedApplication().delegate as AppDelegate
         self.networkController = appDelagate.networkController
         
