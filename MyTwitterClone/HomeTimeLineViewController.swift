@@ -25,6 +25,9 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.estimatedRowHeight = 148.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         //From AppDelagate, using it now.
         //Down casting so we now know its from AppDelagate 
         //The AppDelagate is from the sharedAppliction()
