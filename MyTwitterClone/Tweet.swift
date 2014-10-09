@@ -6,13 +6,14 @@
 //  Copyright (c) 2014 Randall. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Tweet {
     var text: String
     var username: String
     var screenName: String
-    var urlImage: String
+    var avatarURL: String
+    var avatarImage: UIImage?
     var retweet: Int
     var id: String
     var favorited: Int?
@@ -26,7 +27,7 @@ class Tweet {
         //For screenname
         self.screenName = userInfo["screen_name"] as String
         //For image
-        self.urlImage = userInfo["profile_image_url"] as String
+        self.avatarURL = userInfo["profile_image_url"] as String        
         //For retweet
         self.retweet = tweetInfo["retweet_count"] as Int
         //For id

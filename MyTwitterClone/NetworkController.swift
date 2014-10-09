@@ -14,9 +14,10 @@ import Social
 class NetworkController {
     
     var twitterAccount: ACAccount?
+    let imageQueue = NSOperationQueue()
     
     init() {
-        
+        self.imageQueue.maxConcurrentOperationCount = 10
     }
     
     //Fetch is to download, fetching to the network now
@@ -72,11 +73,20 @@ class NetworkController {
         
     }
     
+    
     //Making the network call to fetch profile picture
-    func fetchProfilePic(urlImage: String)-> NSData {
-        let urlData = NSURL.URLWithString(urlImage)
-        let imageData = NSData(contentsOfURL: urlData)
-        return imageData
+    func downloadUserImageForTweet(tweet: Tweet, completionHandler: (image: UIImage)->(Void)) {
+        self.imageQueue.addOperationWithBlock { () -> Void in
+            let url = NSURL(string: tweet.avatarURL)
+            //Network Call
+            let imageData = NSData(contentsOfURL: url)
+            let avatarImage = UIImage(data: imageData)
+            tweet.avatarImage = avatarImage
+            NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+                completionHandler(image: avatarImage)
+            }
+        }
+        
     }
     
     

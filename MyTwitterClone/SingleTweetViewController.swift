@@ -42,8 +42,12 @@ class SingleTweetViewController: UIViewController {
         textView.text = self.tweet.text
         userName.text = self.tweet.username
         screenName.text = "@\(self.tweet.screenName)"
-        let imageData = self.networkController.fetchProfilePic(self.tweet.urlImage)
-        profilePic.image = UIImage(data: imageData)
+        
+        //Making network call for images
+        self.networkController.downloadUserImageForTweet(tweet!, completionHandler: { (image) -> (Void) in
+            self.profilePic.image = image
+        })
+        
         var retweetInt = self.tweet.retweet
         var retweetStr = String(retweetInt)
         retweet.text = "Retweets: \(retweetStr)"
