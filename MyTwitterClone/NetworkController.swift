@@ -86,13 +86,13 @@ class NetworkController {
         let url = NSURL(string: "https://api.twitter.com/1.1/statuses/show.json?id="+tweet.id)
         let twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: nil)
         twitterRequest.account = self.twitterAccount
-        
+
         twitterRequest.performRequestWithHandler { (data, httpResponse, error) -> Void in
             switch httpResponse.statusCode {
             case 200...299:
                 println("This is good!")
                 let tweetInfo = Tweet.paraseJSONDataIntoSingleTweet(data, tweet: tweet)
-   
+
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                     completionHandler(errorDescription: nil, tweet: tweetInfo)
                 })
