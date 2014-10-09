@@ -12,7 +12,7 @@ import Accounts
 //Social Framework brings in SL Request
 import Social
 
-class HomeTimeLineViewController: UIViewController, UITableViewDataSource {
+class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var tweets : [Tweet]?
@@ -24,6 +24,10 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Using Nib instead of segeue
+        self.tableView.registerNib(UINib(nibName: "TweetCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "TWEET_CELL")
+        
         
         tableView.estimatedRowHeight = 148.0
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -46,6 +50,9 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource {
             }
         }
         
+        // This is for the delgation with nib
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         
         
     }
@@ -90,14 +97,25 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
+//    For segue
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "showTweet" {
+//            let showTweet = segue.destinationViewController as SingleTweetViewController
+//            let indexPath = self.tableView.indexPathForSelectedRow()!
+//            let selectedTweet = self.tweets?[indexPath.row]
+//            showTweet.tweet = selectedTweet
+//        }
+//    }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showTweet" {
-            let showTweet = segue.destinationViewController as SingleTweetViewController
-            let indexPath = self.tableView.indexPathForSelectedRow()!
-            let selectedTweet = self.tweets?[indexPath.row]
-            showTweet.tweet = selectedTweet
-        }
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("SingleTweet_VC") as SingleTweetViewController
+        let indexPath = self.tableView.indexPathForSelectedRow()!
+        let selectedTweet = self.tweets?[indexPath.row]
+        newVC.tweet = selectedTweet
+        self.navigationController?.pushViewController(newVC, animated: true)
     }
     
 
