@@ -21,6 +21,12 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
     //Look into the AppDelagate
     var networkController: NetworkController!
     
+    //For pull refresh
+    var refreshControl: UIRefreshControl!
+    
+    //For infinite scroll refresh
+    var refresh_scroll: UIScrollView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +46,8 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
         
         //Important!
         //Now need to call on the newtwork controller
-        self.networkController.fetchHomeTimeLine { (errorDescription, tweets) -> (Void) in
+        //self.networkController.fetchHomeTimeLine { (errorDescription, tweets) -> (Void) in
+        self.networkController.fetchHomeTimeLine(nil, maxId: nil, completionHandler: { (errorDescription, tweets) -> (Void) in
             if errorDescription != nil {
                 //When something wrong happens, should alert that something went wrong.
                 println(errorDescription)
@@ -48,12 +55,17 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
                 self.tweets = tweets
                 self.tableView.reloadData()
             }
-        }
+         })
         
         // This is for the delegation with nib
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
+        //For the pull refresh reload
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "")
+        self.refreshControl.addTarget(self, action: "refresh_pull:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
         
     }
     
@@ -116,6 +128,33 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
         newVC.tweet = selectedTweet
         self.navigationController?.pushViewController(newVC, animated: true)
     }
+    
+    //For pull refresh
+    func refresh_pull(sender: AnyObject) {
+        println("REFRESHING")
+        let tweet = self.tweets?[0]
+        self.networkController.fetchHomeTimeLine(tweet!.id, maxId: nil, completionHandler: { (errorDescription, tweets) -> (Void) in
+            if errorDescription != nil {
+                //When something wrong happens, should alert that something went wrong.
+                println(errorDescription)
+            } else {
+                self.tweets = tweets! + self.tweets!
+                self.tableView.reloadData()
+            }
+        })
+        //To end the refresh
+        self.refreshControl.endRefreshing()
+    }
+    
+    //For endless scrolling
+    func refresh_scroll(sender: AnyObject) {
+        
+    }
+    
+    
+    
+    
+    
     
 
 }

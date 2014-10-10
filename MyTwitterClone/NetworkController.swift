@@ -21,7 +21,7 @@ class NetworkController {
     }
     
     //Fetch is to download, fetching to the network now
-    func fetchHomeTimeLine( completionHandler: (errorDescription: String?, tweets: [Tweet]?)-> (Void)) {
+    func fetchHomeTimeLine( sinceId: String?, maxId: String?, completionHandler: (errorDescription: String?, tweets: [Tweet]?)-> (Void)) {
         
         let accountStore = ACAccountStore()
         //Want account type of Twitter
@@ -32,7 +32,17 @@ class NetworkController {
                 let accounts = accountStore.accountsWithAccountType(accountType)
                 self.twitterAccount = accounts.first as ACAccount?
                 let url = NSURL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json")
-                let twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: nil)
+                
+                var twitterRequest : SLRequest!
+                
+                if sinceId != nil {
+                    twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: ["since_id": sinceId!])
+                } else if maxId != nil {
+                    twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: ["max_id": maxId!])
+                } else {
+                    twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: nil)
+                }
+                
                 twitterRequest.account = self.twitterAccount
                 
                 //Also becomes a background thread here
