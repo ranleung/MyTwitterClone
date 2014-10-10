@@ -50,7 +50,7 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
             }
         }
         
-        // This is for the delgation with nib
+        // This is for the delegation with nib
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
@@ -75,10 +75,10 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
         //For Text
         cell.textView.text = tweet?.text
         
-        //For Username
+        //For ScreenName
         cell.screenName.text = "@\(tweet!.screenName)"
         
-        //For Screename
+        //For Username
         cell.username.text = tweet?.username
         
         //For Image, Using func from NetworkController
@@ -97,7 +97,7 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
         return cell
     }
     
-//    For segue
+//    For Old segue
 //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 //        if segue.identifier == "showTweet" {
 //            let showTweet = segue.destinationViewController as SingleTweetViewController
@@ -106,7 +106,6 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
 //            showTweet.tweet = selectedTweet
 //        }
 //    }
-    
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -120,3 +119,9 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
     
 
 }
+
+
+
+
+
+

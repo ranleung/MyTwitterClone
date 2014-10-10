@@ -24,8 +24,6 @@ class SingleTweetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         let appDelagate = UIApplication.sharedApplication().delegate as AppDelegate
         self.networkController = appDelagate.networkController
         
@@ -51,7 +49,24 @@ class SingleTweetViewController: UIViewController {
         var retweetInt = self.tweet.retweet
         var retweetStr = String(retweetInt)
         retweet.text = "Retweets: \(retweetStr)"
+        
+        //This is for the gesture
+        var tapRecongizer = UITapGestureRecognizer(target: self, action: "userPressed:")
+        self.profilePic.addGestureRecognizer(tapRecongizer)
     }
+    
+    //When the image button is pressed
+    func userPressed(sender : UITapGestureRecognizer) {
+        println("user image is pressed")
+        
+        let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("USER_TIMELINE_VC") as UserTimeLineControllerViewController
+        newVC.tweet = self.tweet
+        self.navigationController?.pushViewController(newVC, animated: true)
+        
+        
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

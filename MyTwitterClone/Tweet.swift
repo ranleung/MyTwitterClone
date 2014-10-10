@@ -17,6 +17,7 @@ class Tweet {
     var retweet: Int
     var id: String
     var favorited: Int?
+    var userId: String
 
     
     init(tweetInfo: NSDictionary) {
@@ -32,7 +33,7 @@ class Tweet {
         self.retweet = tweetInfo["retweet_count"] as Int
         //For id
         self.id = tweetInfo["id_str"] as String
-        
+        self.userId = userInfo["id_str"] as String
     }
     
     

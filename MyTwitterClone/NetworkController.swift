@@ -121,7 +121,40 @@ class NetworkController {
         }
         
     }
-
+    
+    //Making a network call for the user Timeline
+    func fetchUserTimeLine ( tweet: Tweet, completionHandler: (errorDescription: String?, tweets: [Tweet]?)->(Void)) {
+        
+        let url = NSURL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=\(tweet.screenName)")
+        let twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: nil)
+        twitterRequest.account = self.twitterAccount
+        
+        twitterRequest.performRequestWithHandler { (data, httpResponse, error) -> Void in
+            switch httpResponse.statusCode {
+            case 200...299:
+                println("This is good!")
+                //Need to parse JSON now.
+                let tweets = Tweet.parseJSONDataIntoTweets(data)
+                
+                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                    completionHandler(errorDescription: nil, tweets: tweets)
+                })
+                
+            case 400...499:
+                println("This is the clients fault")
+                println(httpResponse.description)
+                completionHandler(errorDescription: "This is the clients fault", tweets: nil)
+            case 500...599:
+                println("This is the servers fault")
+                completionHandler(errorDescription: "This is the servers fault", tweets: nil)
+            default:
+                println("Something bad happened")
+                
+                
+            }
+        }
+        
+    }
     
     
     
