@@ -32,7 +32,7 @@ class SingleTweetViewController: UIViewController {
                 println(errorDescription)
             } else {
                 self.tweet = tweet
-                self.favorited.text = "Favorites: \(self.tweet.favorited!.description)"
+                self.favorited.text = self.tweet.favorited!.description
             }
         })
         
@@ -48,7 +48,7 @@ class SingleTweetViewController: UIViewController {
         
         var retweetInt = self.tweet.retweet
         var retweetStr = String(retweetInt)
-        retweet.text = "Retweets: \(retweetStr)"
+        retweet.text = retweetStr
         
         //This is for the gesture
         var tapRecongizer = UITapGestureRecognizer(target: self, action: "userPressed:")
