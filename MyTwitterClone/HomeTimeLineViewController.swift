@@ -93,7 +93,7 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
         //For Username
         cell.username.text = tweet?.username
         
-        
+    
         //For Image, Using func from NetworkController
         self.networkController.downloadUserImageForTweet(tweet!, completionHandler: { (image) -> (Void) in
             let cellForImage = self.tableView.cellForRowAtIndexPath(indexPath) as TweetCell?

@@ -13,6 +13,8 @@ class SingleTweetViewController: UIViewController {
     var tweet: Tweet!
     var networkController: NetworkController!
     
+    //For Image Caching
+    var imageCached = [String: UIImage]()
     
     @IBOutlet var textView: UILabel!
     @IBOutlet var userName: UILabel!
@@ -42,11 +44,17 @@ class SingleTweetViewController: UIViewController {
         screenName.text = "@\(self.tweet.screenName)"
         
         //Making network call for images
-        self.networkController.downloadUserImageForTweet(tweet!, completionHandler: { (image) -> (Void) in
-            self.profilePic.image = image
-            self.profilePic.layer.cornerRadius = 10
-            self.profilePic.layer.masksToBounds = true
-        })
+        //Caching Images, uses unique Twitter username as reference
+        if let cachedProfilePicImage = self.imageCached[tweet.screenName] {
+            self.profilePic.image = cachedProfilePicImage
+        } else {
+            self.networkController.downloadUserImageForTweet(tweet!, completionHandler: { (image) -> (Void) in
+                self.imageCached[self.tweet!.screenName] = image
+                self.profilePic.image = self.imageCached[self.tweet!.screenName]
+                self.profilePic.layer.cornerRadius = 10
+                self.profilePic.layer.masksToBounds = true
+            })
+        }
         
         var retweetInt = self.tweet.retweet
         var retweetStr = String(retweetInt)
