@@ -62,11 +62,7 @@ class SingleTweetViewController: UIViewController {
         let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("USER_TIMELINE_VC") as UserTimeLineControllerViewController
         newVC.tweet = self.tweet
         self.navigationController?.pushViewController(newVC, animated: true)
-        
-        
     }
-    
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

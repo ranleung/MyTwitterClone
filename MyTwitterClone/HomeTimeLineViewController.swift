@@ -27,9 +27,13 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
     //For infinite scroll refresh
     var refresh_scroll: UIScrollView!
     
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "Home"
         
         //Using Nib instead of segeue
         self.tableView.registerNib(UINib(nibName: "TweetCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "TWEET_CELL")
@@ -67,6 +71,10 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
         self.refreshControl.addTarget(self, action: "refresh_pull:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
         
+        //For the scroll reload
+        //refresh_pull(sender: AnyObject)
+        
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -92,6 +100,7 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
         
         //For Username
         cell.username.text = tweet?.username
+        
         
         //For Image, Using func from NetworkController
         self.networkController.downloadUserImageForTweet(tweet!, completionHandler: { (image) -> (Void) in
@@ -146,13 +155,17 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
         self.refreshControl.endRefreshing()
     }
     
+    
     //For endless scrolling
-    func refresh_scroll(sender: AnyObject) {
-        
+    func refresh_scroll(scrollView: UIScrollView) {
+        var actualPosition: CGFloat = scrollView.contentOffset.y
+        var contentHeight: CGFloat = self.tableView.contentSize.height - 500
+        println("Actual Position: (actualPosition)")
+        println("Content Height: (contentHeight)")
+        if actualPosition >= contentHeight {
+            println("Success")
+        }
     }
-    
-    
-    
     
     
     

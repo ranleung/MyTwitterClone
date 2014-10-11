@@ -15,14 +15,23 @@ class UserTimeLineControllerViewController: UIViewController, UITableViewDataSou
     @IBOutlet var profilePic: UIImageView!
     @IBOutlet var screenName: UILabel!
     
+    //For pull refresh
+    var refreshControl: UIRefreshControl!
+    
+    //For infinite scroll refresh
+    var refresh_scroll: UIScrollView!
+    
     var tweet: Tweet!
     var tweets: [Tweet]?
     var networkController : NetworkController!
     
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         //Using Nib instead of segeue
         self.tableView.registerNib(UINib(nibName: "TweetCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "TWEET_CELL")
@@ -62,13 +71,12 @@ class UserTimeLineControllerViewController: UIViewController, UITableViewDataSou
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
-        //For pull refresh
-        var refreshControl: UIRefreshControl!
         
-        //For infinite scroll refresh
-        var refresh_scroll: UIScrollView!
-
-
+        //For the pull refresh reload
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "")
+        self.refreshControl.addTarget(self, action: "refresh_pull:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
     }
 
     override func didReceiveMemoryWarning() {
@@ -113,5 +121,27 @@ class UserTimeLineControllerViewController: UIViewController, UITableViewDataSou
         newVC.tweet = selectedTweet
         self.navigationController?.pushViewController(newVC, animated: true)
     }
+    
+    //For pull refresh
+    func refresh_pull(sender: AnyObject) {
+        println("REFRESHING")
+        let tweet = self.tweets?[0]
+        self.networkController.fetchHomeTimeLine(tweet!.id, maxId: nil, completionHandler: { (errorDescription, tweets) -> (Void) in
+            if errorDescription != nil {
+                //When something wrong happens, should alert that something went wrong.
+                println(errorDescription)
+            } else {
+                self.tweets = tweets! + self.tweets!
+                self.tableView.reloadData()
+            }
+        })
+        //To end the refresh
+        self.refreshControl.endRefreshing()
+    }
+    
+    
+    
+    
+    
     
 }
