@@ -37,7 +37,17 @@ class SingleTweetViewController: UIViewController {
                 self.favorited.text = self.tweet.favorited!.description
             }
         })
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         
+        var retweetInt = self.tweet.retweet
+        var retweetStr = String(retweetInt)
+        retweet.text = retweetStr
+        
+        //This is for the gesture
+        var tapRecongizer = UITapGestureRecognizer(target: self, action: "userPressed:")
+        self.profilePic.addGestureRecognizer(tapRecongizer)
         
         textView.text = self.tweet.text
         userName.text = self.tweet.username
@@ -56,14 +66,9 @@ class SingleTweetViewController: UIViewController {
             })
         }
         
-        var retweetInt = self.tweet.retweet
-        var retweetStr = String(retweetInt)
-        retweet.text = retweetStr
-        
-        //This is for the gesture
-        var tapRecongizer = UITapGestureRecognizer(target: self, action: "userPressed:")
-        self.profilePic.addGestureRecognizer(tapRecongizer)
     }
+    
+    
     
     //When the image button is pressed
     func userPressed(sender : UITapGestureRecognizer) {
