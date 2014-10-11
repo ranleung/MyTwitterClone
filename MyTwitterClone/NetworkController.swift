@@ -35,9 +35,9 @@ class NetworkController {
                 
                 var twitterRequest : SLRequest!
                 
-                if sinceId != nil {
+                if sinceId != nil && maxId == nil {
                     twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: ["since_id": sinceId!])
-                } else if maxId != nil {
+                } else if maxId != nil && sinceId == nil {
                     twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: ["max_id": maxId!])
                 } else {
                     twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: nil)
@@ -79,7 +79,7 @@ class NetworkController {
                 
             }
         }
-        
+
         
     }
     
@@ -133,10 +133,23 @@ class NetworkController {
     }
     
     //Making a network call for the user Timeline
-    func fetchUserTimeLine ( tweet: Tweet, completionHandler: (errorDescription: String?, tweets: [Tweet]?)->(Void)) {
+    func fetchUserTimeLine ( tweet: Tweet?, sinceId: String?, maxId: String?, completionHandler: (errorDescription: String?, tweets: [Tweet]?)->(Void)) {
         
-        let url = NSURL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=\(tweet.screenName)")
-        let twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: nil)
+        let url = NSURL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=\(tweet!.screenName)")
+        
+        var twitterRequest : SLRequest!
+        
+        if sinceId != nil && maxId == nil {
+            twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: ["since_id": sinceId!])
+        } else if maxId != nil && sinceId == nil {
+            twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: ["max_id": maxId!])
+        } else {
+            twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: nil)
+        }
+
+        
+        
+        twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: nil)
         twitterRequest.account = self.twitterAccount
         
         twitterRequest.performRequestWithHandler { (data, httpResponse, error) -> Void in

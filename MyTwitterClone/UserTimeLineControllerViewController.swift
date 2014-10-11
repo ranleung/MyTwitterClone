@@ -49,7 +49,7 @@ class UserTimeLineControllerViewController: UIViewController, UITableViewDataSou
 
         
         //Need to get the user's timeline now.
-        self.networkController.fetchUserTimeLine(self.tweet, completionHandler: { (errorDescription, tweets) -> (Void) in
+        self.networkController.fetchUserTimeLine(self.tweet, sinceId: nil, maxId: nil, completionHandler: { (errorDescription, tweets) -> (Void) in
             if errorDescription != nil {
                 println(errorDescription)
             } else {
@@ -61,6 +61,12 @@ class UserTimeLineControllerViewController: UIViewController, UITableViewDataSou
         // This is for the delegation with nib
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        
+        //For pull refresh
+        var refreshControl: UIRefreshControl!
+        
+        //For infinite scroll refresh
+        var refresh_scroll: UIScrollView!
 
 
     }
