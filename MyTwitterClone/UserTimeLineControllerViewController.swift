@@ -131,7 +131,7 @@ class UserTimeLineControllerViewController: UIViewController, UITableViewDataSou
     func refresh_pull(sender: AnyObject) {
         println("REFRESHING")
         let tweet = self.tweets?[0]
-        self.networkController.fetchHomeTimeLine(tweet!.id, maxId: nil, completionHandler: { (errorDescription, tweets) -> (Void) in
+        self.networkController.fetchUserTimeLine(self.tweet, sinceId: tweet!.id, maxId: nil, completionHandler: { (errorDescription, tweets) -> (Void) in
             if errorDescription != nil {
                 //When something wrong happens, should alert that something went wrong.
                 println(errorDescription)
@@ -142,6 +142,25 @@ class UserTimeLineControllerViewController: UIViewController, UITableViewDataSou
         })
         //To end the refresh
         self.refreshControl.endRefreshing()
+    }
+    
+    //For endless scrolling
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == (tweets!.count - 1) {
+            println("Now Endless Scrolling")
+            let lastTweet = self.tweets?.last
+            self.networkController.fetchUserTimeLine(self.tweet, sinceId: nil, maxId: lastTweet!.id, completionHandler: { (errorDescription, tweets) -> (Void) in
+                if errorDescription != nil {
+                    println(errorDescription)
+                } else {
+                    var newTweets = tweets!
+                    //Need to remove the first tweet to get rid of repeat
+                    let removeRepeatedFirstTweet = newTweets.removeAtIndex(0)
+                    self.tweets? = self.tweets! + newTweets
+                    self.tableView.reloadData()
+                }
+            })
+        }
     }
     
     

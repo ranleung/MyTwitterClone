@@ -301,7 +301,9 @@
         <scene sceneID="9oo-A5-JVE">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wy6-OR-gLe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" badgeValue="Home" systemItem="mostRecent" id="Ylx-YR-c8y"/>
+                    <tabBarItem key="tabBarItem" title="" image="home.png" id="Ylx-YR-c8y">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ycd-uL-1sl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -328,7 +330,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="wy6-OR-gLe" kind="relationship" relationship="viewControllers" id="afR-Lp-S70"/>
-                        <segue destination="t29-li-tZS" kind="relationship" relationship="viewControllers" id="PtQ-rr-rJx"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R5B-mT-OgO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -336,4 +337,7 @@
             <point key="canvasLocation" x="139" y="134"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="home.png" width="30" height="30"/>
+    </resources>
 </document>
