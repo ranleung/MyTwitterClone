@@ -23,12 +23,6 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
     
     //For pull refresh
     var refreshControl: UIRefreshControl!
-    
-    //For infinite scroll refresh
-    var refresh_scroll: UIScrollView!
-    
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,9 +66,7 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
         self.tableView.addSubview(refreshControl)
         
         //For the scroll reload
-        //refresh_pull(sender: AnyObject)
-        
-        
+        //refresh_scroll(self.tableView)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -106,6 +98,10 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
         self.networkController.downloadUserImageForTweet(tweet!, completionHandler: { (image) -> (Void) in
             let cellForImage = self.tableView.cellForRowAtIndexPath(indexPath) as TweetCell?
             cellForImage?.profilePic.image = image
+            cellForImage?.profilePic.layer.cornerRadius = 10
+            cellForImage?.profilePic.layer.masksToBounds = true
+
+            
         })
         
         //let urlData = NSURL.URLWithString(tweet!.urlImage)
@@ -157,15 +153,24 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
     
     
     //For endless scrolling
-    func refresh_scroll(scrollView: UIScrollView) {
-        var actualPosition: CGFloat = scrollView.contentOffset.y
-        var contentHeight: CGFloat = self.tableView.contentSize.height - 500
-        println("Actual Position: (actualPosition)")
-        println("Content Height: (contentHeight)")
-        if actualPosition >= contentHeight {
-            println("Success")
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == (tweets!.count - 1) {
+            println("Now Endless Scrolling")
+            let tweet = self.tweets?.last
+            self.networkController.fetchHomeTimeLine(nil, maxId: tweet?.id, completionHandler: { (errorDescription, tweets) -> (Void) in
+                if errorDescription != nil {
+                    println(errorDescription)
+                } else {
+                    var newTweets = tweets!
+                    //Need to remove the first tweet to get rid of repeat
+                    let removeRepeatedFirstTweet = newTweets.removeAtIndex(0)
+                    self.tweets? += newTweets
+                    self.tableView.reloadData()
+                }
+            })
         }
     }
+    
     
     
     

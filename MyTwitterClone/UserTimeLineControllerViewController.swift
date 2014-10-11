@@ -45,6 +45,9 @@ class UserTimeLineControllerViewController: UIViewController, UITableViewDataSou
         //Making network call for images
         self.networkController.downloadUserImageForTweet(tweet!, completionHandler: { (image) -> (Void) in
             self.profilePic.image = image
+            self.profilePic.layer.cornerRadius = 50
+            self.profilePic.layer.masksToBounds = true
+            
             
         })
         
@@ -107,6 +110,8 @@ class UserTimeLineControllerViewController: UIViewController, UITableViewDataSou
         self.networkController.downloadUserImageForTweet(tweet!, completionHandler: { (image) -> (Void) in
             let cellForImage = self.tableView.cellForRowAtIndexPath(indexPath) as TweetCell?
             cellForImage?.profilePic.image = image
+            cellForImage?.profilePic.layer.cornerRadius = 10
+            cellForImage?.profilePic.layer.masksToBounds = true
         })
         
         return cell

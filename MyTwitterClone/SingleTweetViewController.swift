@@ -44,6 +44,8 @@ class SingleTweetViewController: UIViewController {
         //Making network call for images
         self.networkController.downloadUserImageForTweet(tweet!, completionHandler: { (image) -> (Void) in
             self.profilePic.image = image
+            self.profilePic.layer.cornerRadius = 10
+            self.profilePic.layer.masksToBounds = true
         })
         
         var retweetInt = self.tweet.retweet

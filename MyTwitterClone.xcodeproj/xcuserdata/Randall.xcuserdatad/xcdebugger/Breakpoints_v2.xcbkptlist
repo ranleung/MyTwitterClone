@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyTwitterClone/HomeTimeLineViewController.swift"
-            timestampString = "434681686.637752"
+            timestampString = "434693700.883737"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyTwitterClone/SingleTweetViewController.swift"
-            timestampString = "434587232.322905"
+            timestampString = "434689386.903861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyTwitterClone/UserTimeLineControllerViewController.swift"
-            timestampString = "434679378.824589"
+            timestampString = "434689695.822528"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyTwitterClone/UserTimeLineControllerViewController.swift"
-            timestampString = "434679378.824589"
+            timestampString = "434689695.822528"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -200,11 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyTwitterClone/UserTimeLineControllerViewController.swift"
-            timestampString = "434679378.824589"
+            timestampString = "434689695.822528"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
