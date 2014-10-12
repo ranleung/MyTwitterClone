@@ -88,10 +88,12 @@ class NetworkController {
     //Making the network call to fetch profile picture
     func downloadUserImageForTweet(tweet: Tweet, completionHandler: (image: UIImage)->(Void)) {
         self.imageQueue.addOperationWithBlock { () -> Void in
+            //Caching the image
             var avatarImage: UIImage?
+            //Using the screenName as a unique key to save images
             if self.cache[tweet.screenName] == nil {
-                //let newRange = tweet.avatarURL.rangeOfString("_normal", options: nil, range: nil, locale: nil)
-                //let newString = tweet.avatarURL.stringByReplacingCharactersInRange(newRange!, withString: "_bigger")
+                let newRange = tweet.avatarURL.rangeOfString("_normal", options: nil, range: nil, locale: nil)
+                let newURLString = tweet.avatarURL.stringByReplacingCharactersInRange(newRange!, withString: "_bigger")
                 let url = NSURL(string: tweet.avatarURL)
                 let imageData = NSData(contentsOfURL: url)
                 avatarImage = UIImage(data: imageData)
