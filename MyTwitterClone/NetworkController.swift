@@ -15,6 +15,7 @@ class NetworkController {
     
     var twitterAccount: ACAccount?
     let imageQueue = NSOperationQueue()
+    var cache = [String:UIImage]()
     
     init() {
         self.imageQueue.maxConcurrentOperationCount = 10
@@ -87,14 +88,35 @@ class NetworkController {
     //Making the network call to fetch profile picture
     func downloadUserImageForTweet(tweet: Tweet, completionHandler: (image: UIImage)->(Void)) {
         self.imageQueue.addOperationWithBlock { () -> Void in
-            let url = NSURL(string: tweet.avatarURL)
-            //Network Call
-            let imageData = NSData(contentsOfURL: url)
-            let avatarImage = UIImage(data: imageData)
-            tweet.avatarImage = avatarImage
-            NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-                completionHandler(image: avatarImage)
+            var avatarImage: UIImage?
+            if self.cache[tweet.screenName] == nil {
+                //let newRange = tweet.avatarURL.rangeOfString("_normal", options: nil, range: nil, locale: nil)
+                //let newString = tweet.avatarURL.stringByReplacingCharactersInRange(newRange!, withString: "_bigger")
+                let url = NSURL(string: tweet.avatarURL)
+                let imageData = NSData(contentsOfURL: url)
+                avatarImage = UIImage(data: imageData)
+                tweet.avatarImage = avatarImage
+                self.cache[tweet.screenName] = avatarImage
+                NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+                  completionHandler(image: avatarImage!)
+                }
+                println("Cached - Image")
+            } else {
+                tweet.avatarImage = avatarImage
+                avatarImage = self.cache[tweet.screenName]
+                NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+                  completionHandler(image: avatarImage!)
+                }
+                println("Image loaded from cache")
             }
+            //let url = NSURL(string: tweet.avatarURL)
+            //Network Call
+            //let imageData = NSData(contentsOfURL: url)
+            //let avatarImage = UIImage(data: imageData)
+            //tweet.avatarImage = avatarImage
+            //NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+              //  completionHandler(image: avatarImage)
+            //}
         }
         
     }
