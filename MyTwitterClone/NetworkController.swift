@@ -14,7 +14,8 @@ class NetworkController {
     
     var twitterAccount: ACAccount?
     let imageQueue = NSOperationQueue()
-    var cachedImage = [String:UIImage]()
+    //var cachedImage = [String:UIImage]()
+    var imageCache = NSCache()
     
     init() {
         self.imageQueue.maxConcurrentOperationCount = 10
@@ -89,26 +90,23 @@ class NetworkController {
         self.imageQueue.addOperationWithBlock { () -> Void in
             //Caching the image
             var avatarImage: UIImage?
+            //Retrieving the value associated with the tweet.avatarURL
+            var data:NSData? = self.imageCache.objectForKey(tweet.avatarURL) as? NSData
             
-            //Using the screenName as a unique key to save images
-            if self.cachedImage[tweet.screenName] == nil {
-                //Update tweet.avatarURL to get a higher resolution picture
-                let newRange = tweet.avatarURL.rangeOfString("_normal", options: nil, range: nil, locale: nil)
-                let newURLString = tweet.avatarURL.stringByReplacingCharactersInRange(newRange!, withString: "_bigger")
+            //If the image is already cached...
+            if let cachedImageData = data {
+                avatarImage = UIImage(data: cachedImageData)
+            } else {
+                //If the image is not yet cached...
                 let url = NSURL(string: tweet.avatarURL)
                 //Network call
                 let imageData = NSData(contentsOfURL: url)
                 avatarImage = UIImage(data: imageData)
-                tweet.avatarImage = avatarImage
-                self.cachedImage[tweet.screenName] = avatarImage
-                //Going back on the main queue
-                println("Cached - Image")
-            } else {
-                //If the image is already cached...
-                tweet.avatarImage = avatarImage
-                avatarImage = self.cachedImage[tweet.screenName]
-                println("Image loaded from cache")
+                //Setting imageData: NSData, as the value for the key tweet.avatarURL
+                self.imageCache.setObject(imageData, forKey: tweet.avatarURL)
             }
+            tweet.avatarImage = avatarImage
+            
             //Return back to main thread
             NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
                 completionHandler(image: avatarImage!)
