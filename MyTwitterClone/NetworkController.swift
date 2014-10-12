@@ -15,7 +15,7 @@ class NetworkController {
     
     var twitterAccount: ACAccount?
     let imageQueue = NSOperationQueue()
-    var cache = [String:UIImage]()
+    var cachedImage = [String:UIImage]()
     
     init() {
         self.imageQueue.maxConcurrentOperationCount = 10
@@ -91,14 +91,14 @@ class NetworkController {
             //Caching the image
             var avatarImage: UIImage?
             //Using the screenName as a unique key to save images
-            if self.cache[tweet.screenName] == nil {
+            if self.cachedImage[tweet.screenName] == nil {
                 let newRange = tweet.avatarURL.rangeOfString("_normal", options: nil, range: nil, locale: nil)
                 let newURLString = tweet.avatarURL.stringByReplacingCharactersInRange(newRange!, withString: "_bigger")
                 let url = NSURL(string: tweet.avatarURL)
                 let imageData = NSData(contentsOfURL: url)
                 avatarImage = UIImage(data: imageData)
                 tweet.avatarImage = avatarImage
-                self.cache[tweet.screenName] = avatarImage
+                self.cachedImage[tweet.screenName] = avatarImage
                 NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
                   completionHandler(image: avatarImage!)
                 }
@@ -106,7 +106,7 @@ class NetworkController {
             } else {
                 //If the image is already cached...
                 tweet.avatarImage = avatarImage
-                avatarImage = self.cache[tweet.screenName]
+                avatarImage = self.cachedImage[tweet.screenName]
                 NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
                   completionHandler(image: avatarImage!)
                 }
