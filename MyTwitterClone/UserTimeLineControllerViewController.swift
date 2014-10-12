@@ -142,7 +142,9 @@ class UserTimeLineControllerViewController: UIViewController, UITableViewDataSou
                     var newTweets = tweets!
                     //Need to remove the first tweet to get rid of repeat
                     let removeRepeatedFirstTweet = newTweets.removeAtIndex(0)
-                    self.tweets? = self.tweets! + newTweets
+                    for newTweet in newTweets {
+                        self.tweets?.append(newTweet)
+                    }
                     self.tableView.reloadData()
                 }
             })

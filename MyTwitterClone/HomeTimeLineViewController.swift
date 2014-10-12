@@ -158,7 +158,10 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
                     var newTweets = tweets!
                     //Need to remove the first tweet to get rid of repeat
                     let removeRepeatedFirstTweet = newTweets.removeAtIndex(0)
-                    self.tweets? += newTweets
+                    for newTweet in newTweets {
+                        self.tweets?.append(newTweet)
+                    }
+                    //self.tweets? += newTweets
                     self.tableView.reloadData()
                 }
             })
