@@ -161,7 +161,6 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
                     for newTweet in newTweets {
                         self.tweets?.append(newTweet)
                     }
-                    //self.tweets? += newTweets
                     self.tableView.reloadData()
                 }
             })

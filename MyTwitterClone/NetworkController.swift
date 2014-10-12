@@ -10,7 +10,6 @@ import Foundation
 import Accounts
 import Social
 
-
 class NetworkController {
     
     var twitterAccount: ACAccount?
@@ -90,6 +89,7 @@ class NetworkController {
         self.imageQueue.addOperationWithBlock { () -> Void in
             //Caching the image
             var avatarImage: UIImage?
+            
             //Using the screenName as a unique key to save images
             if self.cachedImage[tweet.screenName] == nil {
                 //Update tweet.avatarURL to get a higher resolution picture
@@ -102,18 +102,16 @@ class NetworkController {
                 tweet.avatarImage = avatarImage
                 self.cachedImage[tweet.screenName] = avatarImage
                 //Going back on the main queue
-                NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-                  completionHandler(image: avatarImage!)
-                }
                 println("Cached - Image")
             } else {
                 //If the image is already cached...
                 tweet.avatarImage = avatarImage
                 avatarImage = self.cachedImage[tweet.screenName]
-                NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-                  completionHandler(image: avatarImage!)
-                }
                 println("Image loaded from cache")
+            }
+            //Return back to main thread
+            NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+                completionHandler(image: avatarImage!)
             }
             //let url = NSURL(string: tweet.avatarURL)
             //Network Call
@@ -126,7 +124,6 @@ class NetworkController {
         }
         
     }
-    
     
     //Making a network to get favorite Tweets
     func fetchSingleTweet ( tweet: Tweet, completionHandler: (errorDescription: String?, tweet: Tweet?)-> (Void)) {
@@ -144,7 +141,6 @@ class NetworkController {
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                     completionHandler(errorDescription: nil, tweet: tweetInfo)
                 })
-                
                 
             case 400...499:
                 println("This is the clients fault")
@@ -174,8 +170,6 @@ class NetworkController {
         } else {
             twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: nil)
         }
-
-        
         
         twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: nil)
         twitterRequest.account = self.twitterAccount
@@ -200,8 +194,6 @@ class NetworkController {
                 completionHandler(errorDescription: "This is the servers fault", tweets: nil)
             default:
                 println("Something bad happened")
-                
-                
             }
         }
         
