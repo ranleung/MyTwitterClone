@@ -92,13 +92,16 @@ class NetworkController {
             var avatarImage: UIImage?
             //Using the screenName as a unique key to save images
             if self.cachedImage[tweet.screenName] == nil {
+                //Update tweet.avatarURL to get a higher resolution picture
                 let newRange = tweet.avatarURL.rangeOfString("_normal", options: nil, range: nil, locale: nil)
                 let newURLString = tweet.avatarURL.stringByReplacingCharactersInRange(newRange!, withString: "_bigger")
                 let url = NSURL(string: tweet.avatarURL)
+                //Network call
                 let imageData = NSData(contentsOfURL: url)
                 avatarImage = UIImage(data: imageData)
                 tweet.avatarImage = avatarImage
                 self.cachedImage[tweet.screenName] = avatarImage
+                //Going back on the main queue
                 NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
                   completionHandler(image: avatarImage!)
                 }
