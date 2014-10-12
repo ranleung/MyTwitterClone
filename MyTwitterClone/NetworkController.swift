@@ -104,6 +104,7 @@ class NetworkController {
                 }
                 println("Cached - Image")
             } else {
+                //If the image is already cached...
                 tweet.avatarImage = avatarImage
                 avatarImage = self.cache[tweet.screenName]
                 NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
