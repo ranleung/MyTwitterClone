@@ -16,7 +16,8 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
     
     @IBOutlet weak var tableView: UITableView!
     var tweets : [Tweet]?
-    var twitterAccount : ACAccount?
+    //var twitterAccount : ACAccount?
+    
     //To connect with the network Controller which is now a singleton.
     //Look into the AppDelagate
     var networkController: NetworkController!
@@ -32,7 +33,6 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
         //Using Nib instead of segeue
         self.tableView.registerNib(UINib(nibName: "TweetCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "TWEET_CELL")
         
-        
         tableView.estimatedRowHeight = 148.0
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -44,7 +44,6 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
         
         //Important!
         //Now need to call on the newtwork controller
-        //self.networkController.fetchHomeTimeLine { (errorDescription, tweets) -> (Void) in
         self.networkController.fetchHomeTimeLine(nil, maxId: nil, completionHandler: { (errorDescription, tweets) -> (Void) in
             if errorDescription != nil {
                 //When something wrong happens, should alert that something went wrong.
@@ -64,9 +63,6 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
         self.refreshControl.attributedTitle = NSAttributedString(string: "")
         self.refreshControl.addTarget(self, action: "refresh_pull:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
-        
-        //For the scroll reload
-        //refresh_scroll(self.tableView)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -96,12 +92,10 @@ class HomeTimeLineViewController: UIViewController, UITableViewDataSource, UITab
     
         //For Image, Using func from NetworkController
         self.networkController.downloadUserImageForTweet(tweet!, completionHandler: { (image) -> (Void) in
-            let cellForImage = self.tableView.cellForRowAtIndexPath(indexPath) as TweetCell?
+            let cellForImage = self.tableView.cellForRowAtIndexPath(indexPath) as? TweetCell
             cellForImage?.profilePic.image = image
             cellForImage?.profilePic.layer.cornerRadius = 10
             cellForImage?.profilePic.layer.masksToBounds = true
-
-            
         })
         
         //let urlData = NSURL.URLWithString(tweet!.urlImage)

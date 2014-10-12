@@ -31,8 +31,7 @@ class UserTimeLineControllerViewController: UIViewController, UITableViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+    
         //Using Nib instead of segeue
         self.tableView.registerNib(UINib(nibName: "TweetCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "TWEET_CELL")
         
@@ -47,19 +46,11 @@ class UserTimeLineControllerViewController: UIViewController, UITableViewDataSou
             self.profilePic.image = image
             self.profilePic.layer.cornerRadius = 50
             self.profilePic.layer.masksToBounds = true
-            
-            
         })
-        
-        
-        //Using Nib
-        self.tableView.registerNib(UINib(nibName: "TweetCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "TWEET_CELL")
         
         tableView.estimatedRowHeight = 68.0
         tableView.rowHeight = UITableViewAutomaticDimension
-        
 
-        
         //Need to get the user's timeline now.
         self.networkController.fetchUserTimeLine(self.tweet, sinceId: nil, maxId: nil, completionHandler: { (errorDescription, tweets) -> (Void) in
             if errorDescription != nil {
@@ -74,7 +65,6 @@ class UserTimeLineControllerViewController: UIViewController, UITableViewDataSou
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
-        
         //For the pull refresh reload
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "")
@@ -88,7 +78,6 @@ class UserTimeLineControllerViewController: UIViewController, UITableViewDataSou
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if self.tweets != nil {
             return self.tweets!.count
         } else {
@@ -104,7 +93,6 @@ class UserTimeLineControllerViewController: UIViewController, UITableViewDataSou
         cell.textView.text = tweet?.text
         cell.screenName.text = "@\(tweet!.screenName)"
         cell.username.text = tweet?.username
-        
 
         //Making call for Image
         self.networkController.downloadUserImageForTweet(tweet!, completionHandler: { (image) -> (Void) in
@@ -113,13 +101,11 @@ class UserTimeLineControllerViewController: UIViewController, UITableViewDataSou
             cellForImage?.profilePic.layer.cornerRadius = 10
             cellForImage?.profilePic.layer.masksToBounds = true
         })
-        
         return cell
     }
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
         let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("SingleTweet_VC") as SingleTweetViewController
         let indexPath = self.tableView.indexPathForSelectedRow()!
         let selectedTweet = self.tweets?[indexPath.row]

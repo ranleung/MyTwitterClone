@@ -41,7 +41,6 @@ class Tweet {
     class func parseJSONDataIntoTweets(rawJSONData: NSData) -> [Tweet]? {
         var error: NSError?
         if let JSONArray = NSJSONSerialization.JSONObjectWithData(rawJSONData, options: nil, error: nil) as? NSArray{
-            
             var tweets = [Tweet]()
             
             for JSONDictionary in JSONArray {

@@ -21,7 +21,6 @@
 		70DD0FB219E5CE6600B4EE63 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DD0FB119E5CE6600B4EE63 /* NetworkController.swift */; };
 		70DD0FB419E5E01B00B4EE63 /* SingleTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DD0FB319E5E01B00B4EE63 /* SingleTweetViewController.swift */; };
 		70E0783719E7440700EAFF23 /* UserTimeLineControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E0783619E7440700EAFF23 /* UserTimeLineControllerViewController.swift */; };
-		70E0783D19E744CE00EAFF23 /* UserTimeLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E0783C19E744CE00EAFF23 /* UserTimeLineCell.swift */; };
 		70E9DB7319E4891600DCD634 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E9DB7219E4891600DCD634 /* TweetCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,7 +53,6 @@
 		70DD0FB119E5CE6600B4EE63 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		70DD0FB319E5E01B00B4EE63 /* SingleTweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTweetViewController.swift; sourceTree = "<group>"; };
 		70E0783619E7440700EAFF23 /* UserTimeLineControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimeLineControllerViewController.swift; sourceTree = "<group>"; };
-		70E0783C19E744CE00EAFF23 /* UserTimeLineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimeLineCell.swift; sourceTree = "<group>"; };
 		70E9DB7219E4891600DCD634 /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,7 +97,6 @@
 		7059891519E3328B00742C32 /* View Layer */ = {
 			isa = PBXGroup;
 			children = (
-				70E0783C19E744CE00EAFF23 /* UserTimeLineCell.swift */,
 				70E9DB7219E4891600DCD634 /* TweetCell.swift */,
 				70B2477919E72834003C9A1C /* TweetCell.xib */,
 			);
@@ -275,7 +272,6 @@
 				70DD0FB419E5E01B00B4EE63 /* SingleTweetViewController.swift in Sources */,
 				70E9DB7319E4891600DCD634 /* TweetCell.swift in Sources */,
 				7059891919E333D900742C32 /* HomeTimeLineViewController.swift in Sources */,
-				70E0783D19E744CE00EAFF23 /* UserTimeLineCell.swift in Sources */,
 				70E0783719E7440700EAFF23 /* UserTimeLineControllerViewController.swift in Sources */,
 				7059891D19E336AB00742C32 /* Tweet.swift in Sources */,
 			);
