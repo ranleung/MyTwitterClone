@@ -100,10 +100,10 @@ class NetworkController {
                 //If the image is not yet cached...
                 let url = NSURL(string: tweet.avatarURL)
                 //Network call
-                let imageData = NSData(contentsOfURL: url)
-                avatarImage = UIImage(data: imageData)
+                let imageData = NSData(contentsOfURL: url!)
+                avatarImage = UIImage(data: imageData!)
                 //Setting imageData: NSData, as the value for the key tweet.avatarURL
-                self.imageCache.setObject(imageData, forKey: tweet.avatarURL)
+                self.imageCache.setObject(imageData!, forKey: tweet.avatarURL)
             }
             tweet.avatarImage = avatarImage
             
